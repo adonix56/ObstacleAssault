@@ -20,6 +20,7 @@ void AMovingPlatform::BeginPlay()
 
 	StartLocation = GetActorLocation();
 	//SetActorLocation(MyVector);
+	UE_LOG(LogTemp, Warning, TEXT("Okay We Got IT"));
 }
 
 // Called every frame
@@ -28,18 +29,13 @@ void AMovingPlatform::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	FVector CurrentLocation = GetActorLocation();
-	if (MoveForward) {
-		CurrentLocation.X += 1;
-	}
-	else {
-		CurrentLocation.X -= 1;
-	}
+	float MoveDistance = FVector::DistSquared(StartLocation, CurrentLocation);
+	CurrentLocation += PlatformVelocity * DeltaTime * ((MoveForward) ? 1 : -1);
 
-	if (CurrentLocation.X < StartLocation.X) {
-		MoveForward = true;
-	}
-	if (CurrentLocation.X > StartLocation.X + MaxDistance) {
-		MoveForward = false;
+	if (MoveDistance > MaxDistance * MaxDistance) {
+		UE_LOG(LogTemp, Warning, TEXT("Okay We Got IT"));
+		StartLocation += PlatformVelocity.GetSafeNormal() * MaxDistance * ((MoveForward) ? 1 : -1);
+		MoveForward = !MoveForward;
 	}
 
 	SetActorLocation(CurrentLocation);

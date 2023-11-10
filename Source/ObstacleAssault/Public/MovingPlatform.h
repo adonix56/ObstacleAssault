@@ -29,5 +29,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float MaxDistance = 20.0f;
 
+	UPROPERTY(EditAnywhere, Category="Moving Platform")
+	FVector PlatformVelocity = FVector(1.0f, 0.0f, 0.0f);
+
+	UPROPERTY(VisibleAnywhere)
 	bool MoveForward;
 };
