@@ -23,6 +23,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
 	UPROPERTY(EditAnywhere)
 	FVector StartLocation = FVector(1.0f, 2.0f, 3.0f);
 
@@ -34,4 +35,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	bool MoveForward;
+
+	void MovePlatform(float DeltaTime);
+
+	void RotatePlatform(float DeltaTime);
 };
