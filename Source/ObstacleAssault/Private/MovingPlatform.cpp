@@ -45,5 +45,9 @@ void AMovingPlatform::MovePlatform(float DeltaTime) {
 }
 
 void AMovingPlatform::RotatePlatform(float DeltaTime) {
-	UE_LOG(LogTemp, Warning, TEXT("%s Rotating!"), *GetName());
+	//UE_LOG(LogTemp, Warning, TEXT("%s Rotating!"), *GetName());
+	//FRotator CurrentRotation = GetActorRotation();
+	//CurrentRotation += RotationVelocity * DeltaTime;
+	//SetActorRotation(CurrentRotation);
+	AddActorLocalRotation(RotationVelocity * DeltaTime);
 }
